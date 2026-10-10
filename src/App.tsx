@@ -23,12 +23,7 @@ export default function App() {
           </button>
         </div>
       </nav>
-      {tab === "overview" && (
-        <Overview
-          onOpenBoard={() => setTab("wheelchair")}
-          onOpenLab={() => setTab("wheelchair")}
-        />
-      )}
+      {tab === "overview" && <Overview />}
       {tab === "wheelchair" && <Wheelchair />}
       <footer className="foot">
         Research demo · synthetic EEG · not a medical device
