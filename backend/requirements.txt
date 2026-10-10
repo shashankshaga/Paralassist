@@ -1,0 +1,15 @@
+# Requires Python 3.10–3.12 (psychopy does not support 3.13+ yet)
+
+# EEG hardware + signal processing
+brainflow>=5.22.2
+numpy>=2.0
+pandas>=3.0.3
+scikit-learn>=1.9.0
+scipy>=1.13
+
+# TRCA classifier
+meegkit>=0.1.9
+
+# Stimulus presentation + keyboard emulation (real-time control)
+psychopy>=2026.2.0
+pydirectinput>=1.0.4

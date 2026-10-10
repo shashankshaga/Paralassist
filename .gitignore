@@ -2,3 +2,9 @@ node_modules
 dist
 .DS_Store
 *.log
+
+# Python / EEG
+__pycache__/
+.venv/
+backend/training_data*/
+backend/test_logs/
