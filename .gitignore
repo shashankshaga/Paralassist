@@ -8,3 +8,5 @@ __pycache__/
 .venv/
 backend/training_data*/
 backend/test_logs/
+backend/models/
+backend/jaw_calibration/

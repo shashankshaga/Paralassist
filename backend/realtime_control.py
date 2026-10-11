@@ -39,9 +39,18 @@ def main() -> None:
 
     # Background board reader in PREDICT mode: fits TRCA on your training data,
     # then classifies + presses a key after every flicker window.
-    recorder = RecordingProcess(mode="predict", data_dir=cfg.TRAINING_DATA_DIR)
+    # Continuous flicker, so no "start" trigger is needed.
+    recorder = RecordingProcess(mode="predict", data_dir=cfg.TRAINING_DATA_DIR,
+                                jaw_trigger=False)
     recorder.start()
-    core.wait(30)
+    if not recorder.wait_until_ready():
+        print("Board/model setup failed - see the error above.", flush=True)
+        show_message(win, "Setup failed - see the terminal.")
+        core.wait(3)
+        recorder.stop()
+        recorder.join(timeout=5)
+        win.close()
+        core.quit()
 
     squares, cues = build_stimuli(win)
 

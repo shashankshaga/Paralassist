@@ -66,6 +66,10 @@ ELECTRODE_LABELS = ["Oz", "O1", "O2", "PO7", "PO8", "PO3", "PO4", "POz"]
 STIMULUS_FREQUENCIES = [6.67, 8.57, 12.00, 15.00]  # Hz
 N_TARGETS = len(STIMULUS_FREQUENCIES)
 
+# Human-readable name of each target, in the same order as the squares
+# (top-left, top-right, bottom-left, bottom-right).
+TARGET_LABELS = ["left", "right", "up", "down"]
+
 # --------------------------------------------------------------------------- #
 # Trial timing (seconds)
 # --------------------------------------------------------------------------- #
@@ -121,9 +125,35 @@ USE_ENSEMBLE_TRCA = True   # ensemble TRCA is more accurate than plain TRCA
 KEY_MAP = {0: "w", 1: "s", 2: "a", 3: "d"}
 
 # --------------------------------------------------------------------------- #
+# Hands-free trigger: double jaw clench (see ssvep/jaw.py)
+# --------------------------------------------------------------------------- #
+# Clench twice (~0.3-1.5 s apart) to start a flash instead of pressing SPACE.
+JAW_TRIGGER = True
+# A clench must raise the 20-45 Hz muscle activity this many times above your
+# resting level. Lower = more sensitive (more false starts); higher = needs a
+# harder clench. Tune with calibrate_jaw.py.
+# 3.5 caught 4/8 fast double clenches with 0 false triggers in a 60 s test
+# recording; 3.0 caught 6/8 but false-triggered once at rest.
+JAW_THRESHOLD_FACTOR = 3.5
+# Pause between the trigger and the flash, so the clench's muscle activity has
+# died down before EEG is captured (and you have time to look at a square).
+JAW_START_DELAY = 0.8  # s
+
+# --------------------------------------------------------------------------- #
+# Signal check before classifying a flash
+# --------------------------------------------------------------------------- #
+# Median per-channel std of the filtered flash window must fall in this range
+# [uV]. Good recordings here sit around 700-1200 uV; a flat 0 or tens of
+# thousands means an electrode (usually reference/ground) lost contact.
+SIGNAL_STD_RANGE = (1.0, 10000.0)
+
+# --------------------------------------------------------------------------- #
 # File paths
 # --------------------------------------------------------------------------- #
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Where training blocks are saved / loaded from (block_{block}_{trial}.csv).
 TRAINING_DATA_DIR = os.path.join(PROJECT_ROOT, "training_data")
+
+# Trained EEGNet checkpoint (from train_eegnet.py locally, or Databricks).
+EEGNET_MODEL_PATH = os.path.join(PROJECT_ROOT, "models", "eegnet.pt")
