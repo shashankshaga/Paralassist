@@ -14,7 +14,7 @@ const GROUND = H - 40;
 const INK = "#1b2540";
 const ACCENT = "#3b4cca";
 const BODY = "#8b97b5";
-const SKIN = "#d9b8a0";
+const SKIN = "#8d5524";
 const REAR_R = 34;
 
 type Command = "forward" | "back" | "stop";
