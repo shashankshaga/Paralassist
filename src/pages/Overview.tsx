@@ -1,33 +1,20 @@
 import { Brain } from "../components/Brain";
 
-type Props = {
-  onOpenBoard: () => void;
-  onOpenLab: () => void;
-};
-
-export function Overview({ onOpenBoard, onOpenLab }: Props) {
+export function Overview() {
   return (
     <div className="page">
       <section className="hero hero-split">
         <div>
           <p className="kicker">Hackathon · BCI · Care</p>
           <h1>
-            StillSpeak
+            Paralassist
             <span>Look to speak.</span>
           </h1>
           <p className="lede">
-            People with paralysis can still lock their visual cortex onto a flicker. StillSpeak
+            People with paralysis can still lock their visual cortex onto a flicker. Paralassist
             mirrors those SSVEP frequencies, classifies them with competing AI models, and turns
             a gaze into a need: help, water, pain, yes, no.
           </p>
-          <div className="hero-actions">
-            <button className="btn btn-primary" onClick={onOpenBoard}>
-              Open patient board
-            </button>
-            <button className="btn" onClick={onOpenLab}>
-              Train SSVEP models
-            </button>
-          </div>
         </div>
         <Brain />
       </section>
@@ -37,7 +24,7 @@ export function Overview({ onOpenBoard, onOpenLab }: Props) {
           <h2>Problem</h2>
           <p>
             Locked-in syndrome, late-stage ALS, and high spinal injury can leave someone fully
-            aware but unable to talk, type, or press a button. Care teams guess. Patients wait.
+            aware but unable to talk, type, or press a button. Instead of guessing, now we can be sure.
           </p>
         </article>
         <article className="card">
@@ -51,8 +38,8 @@ export function Overview({ onOpenBoard, onOpenLab }: Props) {
         <article className="card">
           <h2>AI layer</h2>
           <p>
-            We train and compare CCA, filter-bank CCA, and an in-browser FFT + softmax model
-            on synthetic SSVEP. The live board uses FBCCA on a 1-second window.
+            We trained our calibrated data on a TRCA model, and at the same time trained a 
+            model to classify the SSVEP frequencies using an EEGNet Neural Network and compare the two outputs.
           </p>
         </article>
       </section>
