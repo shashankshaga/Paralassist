@@ -78,7 +78,7 @@ export function Brain() {
 
   return (
     <div className="brain-stage" role="img" aria-label="3D Blender brain with the occipital lobe highlighted">
-      <Canvas camera={{ position: [3.4, 0, -4.2], fov: 38 }} gl={{ antialias: true }}>
+      <Canvas camera={{ position: [2.0, 0, -4.2], fov: 38 }} gl={{ antialias: true }}>
         <color attach="background" args={["#070c0a"]} />
         <ambientLight intensity={0.35} />
         <directionalLight position={[2.4, 2.2, 1.2]} intensity={1.15} />
@@ -91,7 +91,7 @@ export function Brain() {
           </Html>
         )}
         <OrbitControls
-          target={[0, -0.45, 0]}
+          target={[0, -1.3, -0.3]}
           enablePan={false}
           minDistance={2.2}
           maxDistance={6.5}
