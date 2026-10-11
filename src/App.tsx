@@ -17,7 +17,7 @@ export default function App() {
         </div>
         <div className="tabs">
           <button className={tab === "overview" ? "on" : ""} onClick={() => setTab("overview")}>
-            Story
+            Home
           </button>
           <button className={tab === "wheelchair" ? "on" : ""} onClick={() => setTab("wheelchair")}>
             Wheelchair
