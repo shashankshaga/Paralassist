@@ -2,12 +2,11 @@ node_modules
 dist
 .DS_Store
 *.log
-<<<<<<< HEAD
-=======
 
 # Python / EEG
 __pycache__/
 .venv/
 backend/training_data*/
 backend/test_logs/
->>>>>>> 0dec4ff593dfff389cfc86f681ec0fdc28383884
+backend/models/
+backend/jaw_calibration/

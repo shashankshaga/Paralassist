@@ -148,3 +148,22 @@ def _count_blocks(data_dir: str) -> int:
     while os.path.exists(os.path.join(data_dir, f"block_{block + 1}_1.csv")):
         block += 1
     return block
+
+
+
+def cross_validate_accuracy(X: np.ndarray, y: np.ndarray, blocks: np.ndarray) -> float:
+    """
+    Leave-one-block-out TRCA accuracy (percent) on channels-first trials
+    X (n_trials, channels, samples), as returned by `eegnet.load_trials`.
+
+    Uses the same blocks and analysis window as the EEGNet validation, so the
+    two accuracies can be compared directly.
+    """
+    eeg = X[..., crop_indices()].transpose(2, 1, 0)   # -> (samples, channels, trials)
+    correct = []
+    for block in np.unique(blocks):
+        test = blocks == block
+        model = build_model()
+        model.fit(eeg[..., ~test], y[~test])
+        correct.append(model.predict(eeg[..., test]) == y[test])
+    return float(np.concatenate(correct).mean() * 100)
